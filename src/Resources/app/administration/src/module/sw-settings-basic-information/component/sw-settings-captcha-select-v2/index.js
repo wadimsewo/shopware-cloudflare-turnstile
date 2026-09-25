@@ -60,6 +60,15 @@ Shopware.Component.override('sw-settings-captcha-select-v2', {
     },
 
     methods: {
+        // Shopware 6.6+ emits "update:value", 6.5 emits "change"; native DOM change events are ignored
+        setTurnstileConfig(key, value) {
+            if (value instanceof Event) {
+                return;
+            }
+
+            this.currentValue.cloudflareTurnstile.config[key] = value;
+        },
+
         validateTurnstileApiCredentials() {
             this.turnstileIsValidatingCredentials = true;
 

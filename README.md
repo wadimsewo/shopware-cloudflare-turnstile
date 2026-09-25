@@ -1,7 +1,7 @@
 # SsqCloudflareTurnstile – Cloudflare Turnstile für Shopware 6
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/hyperlink/cloudflare-turnstile.svg)](https://packagist.org/packages/hyperlink/cloudflare-turnstile)
-[![Shopware 6.5](https://img.shields.io/badge/Shopware-6.5.x-189EFF.svg)](https://www.shopware.com)
+[![Shopware 6.5 | 6.6 | 6.7](https://img.shields.io/badge/Shopware-6.5%20%7C%206.6%20%7C%206.7-189EFF.svg)](https://www.shopware.com)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 Integriert [Cloudflare Turnstile](https://www.cloudflare.com/products/turnstile/) als datenschutzfreundliche CAPTCHA-Lösung in Shopware 6.
@@ -22,7 +22,7 @@ Integriert [Cloudflare Turnstile](https://www.cloudflare.com/products/turnstile/
 
 ## Voraussetzungen
 
-- Shopware 6.5.x
+- Shopware 6.5.x, 6.6.x oder 6.7.x
 - PHP 8.1+
 - Ein [Cloudflare Turnstile](https://dash.cloudflare.com/?to=/:account/turnstile)-Konto mit Site Key und Secret Key
 
@@ -55,7 +55,7 @@ bin/console cache:clear
    bin/console cache:clear
    ```
 
-3. **Administration-Assets veröffentlichen** (optional – das Plugin enthält bereits eine vorgebaute JS-Datei):
+3. **Administration-Assets veröffentlichen** (optional – das Plugin enthält bereits vorgebaute Dateien für Webpack (6.5/6.6) und Vite (6.7)):
 
    ```bash
    bin/console assets:install
@@ -131,6 +131,8 @@ Bei der Deinstallation werden alle gespeicherten Konfigurationsdaten (inkl. Secr
 - Die Captcha-Validierung erfolgt serverseitig über die [Cloudflare Siteverify API](https://developers.cloudflare.com/turnstile/get-started/server-side-validation/)
 - Bei API-Ausfällen greift ein konfigurierbarer **Fail-open/Fail-closed**-Mechanismus: Standardmäßig werden Anfragen durchgelassen (Fail-open), damit der Shop weiter funktioniert. Kann im Admin unter der Checkbox „Bei API-Ausfall Anfragen durchlassen" deaktiviert werden, um stattdessen Anfragen zu blockieren (Fail-closed).
 - Die Konfiguration wird in `core.basicInformation.activeCaptchasV2.cloudflareTurnstile` in der `system_config`-Tabelle gespeichert
+- Die Administration liegt in zwei Builds vor: `Resources/public/administration/js/` (Webpack, Shopware 6.5/6.6) und `Resources/public/administration/.vite/` + `assets/` (Vite, Shopware 6.7). Shopware lädt automatisch den passenden Build.
+- Die Admin-API-Route ist in `Resources/config/routes.xml` definiert (statt per Annotation), damit sie unter Symfony 6 und 7 funktioniert.
 
 ---
 

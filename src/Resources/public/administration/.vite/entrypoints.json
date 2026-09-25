@@ -1,0 +1,23 @@
+{
+  "base": "/bundles/ssqcloudflareturnstile/administration/",
+  "entryPoints": {
+    "ssq-cloudflare-turnstile": {
+      "css": [],
+      "dynamic": [],
+      "js": [
+        "/bundles/ssqcloudflareturnstile/administration/assets/ssq-cloudflare-turnstile-kPNY0MSC.js"
+      ],
+      "legacy": false,
+      "preload": []
+    }
+  },
+  "legacy": false,
+  "metadatas": {},
+  "version": [
+    "7.1.0",
+    7,
+    1,
+    0
+  ],
+  "viteServer": null
+}

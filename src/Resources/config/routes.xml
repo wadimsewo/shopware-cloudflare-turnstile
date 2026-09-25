@@ -4,6 +4,21 @@
         xsi:schemaLocation="http://symfony.com/schema/routing
         https://symfony.com/schema/routing/routing-1.0.xsd">
 
-    <import resource="../../Controller/**/*Controller.php" type="annotation"/>
+    <!-- Defined in XML instead of annotations/attributes to work on Shopware 6.5 (Symfony 6) and 6.7 (Symfony 7) -->
+    <route id="api.action.cloudflare_turnstile.validate.api.credentials"
+           path="/api/_action/cloudflare-turnstile/validate-api-credentials"
+           controller="Ssq\CloudflareTurnstile\Controller\ApiCredentialsController::validateApiCredentials"
+           methods="GET">
+        <default key="_routeScope">
+            <list>
+                <string>api</string>
+            </list>
+        </default>
+        <default key="_acl">
+            <list>
+                <string>sales_channel.editor</string>
+            </list>
+        </default>
+    </route>
 </routes>
 

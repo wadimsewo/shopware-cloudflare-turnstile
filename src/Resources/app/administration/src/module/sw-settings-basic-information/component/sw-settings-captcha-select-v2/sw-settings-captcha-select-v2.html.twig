@@ -45,9 +45,12 @@
             </sw-button-process>
         {% endblock %}
 
+        {# value binding + update:value (Shopware 6.6+) and change (Shopware 6.5) #}
         {% block sw_settings_captcha_select_v2_cloudflare_turnstile_widget_mode %}
             <sw-single-select
-                v-model="currentValue.cloudflareTurnstile.config.widgetMode"
+                :value="currentValue.cloudflareTurnstile.config.widgetMode"
+                @update:value="setTurnstileConfig('widgetMode', $event)"
+                @change="setTurnstileConfig('widgetMode', $event)"
                 :options="turnstileWidgetModeOptions"
                 :label="$tc('sw-settings-basic-information.captcha.label.cloudflareTurnstileWidgetMode')"
                 :help-text="$tc('sw-settings-basic-information.captcha.help.cloudflareTurnstileWidgetMode')"
@@ -56,7 +59,9 @@
 
         {% block sw_settings_captcha_select_v2_cloudflare_turnstile_theme %}
             <sw-single-select
-                v-model="currentValue.cloudflareTurnstile.config.theme"
+                :value="currentValue.cloudflareTurnstile.config.theme"
+                @update:value="setTurnstileConfig('theme', $event)"
+                @change="setTurnstileConfig('theme', $event)"
                 :options="turnstileThemeOptions"
                 :label="$tc('sw-settings-basic-information.captcha.label.cloudflareTurnstileTheme')"
             />
@@ -64,7 +69,9 @@
 
         {% block sw_settings_captcha_select_v2_cloudflare_turnstile_fail_open %}
             <sw-checkbox-field
-                v-model="currentValue.cloudflareTurnstile.config.failOpen"
+                :value="currentValue.cloudflareTurnstile.config.failOpen"
+                @update:value="setTurnstileConfig('failOpen', $event)"
+                @change="setTurnstileConfig('failOpen', $event)"
                 :label="$tc('sw-settings-basic-information.captcha.label.cloudflareTurnstileFailOpen')"
                 :help-text="$tc('sw-settings-basic-information.captcha.help.cloudflareTurnstileFailOpen')"
             />

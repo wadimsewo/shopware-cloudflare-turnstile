@@ -11,11 +11,7 @@ use Shopware\Core\Framework\Routing\Exception\InvalidRequestParameterException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Routing\Annotation\Route;
 
-/**
- * @Route(defaults={"_routeScope"={"api"}})
- */
 class ApiCredentialsController extends AbstractController
 {
     private ClientInterface $client;
@@ -26,13 +22,6 @@ class ApiCredentialsController extends AbstractController
     }
 
     /**
-     * @Route(
-     *     "/api/_action/cloudflare-turnstile/validate-api-credentials",
-     *     name="api.action.cloudflare_turnstile.validate.api.credentials",
-     *     methods={"GET"},
-     *     defaults={"_acl"={"sales_channel.editor"}}
-     * )
-     *
      * @throws \JsonException
      */
     public function validateApiCredentials(Request $request): JsonResponse
