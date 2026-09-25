@@ -13,12 +13,11 @@ export default class CloudflareTurnstileApiCredentialsService extends ApiService
     validateApiCredentials(siteKey, secretKey) {
         const headers = this.getBasicHeaders();
 
-        return this.httpClient.get(
+        // POST keeps the secret key out of URLs and access logs
+        return this.httpClient.post(
             `_action/${this.getApiBasePath()}/validate-api-credentials`,
-            {
-                params: { siteKey, secretKey },
-                headers: headers,
-            },
+            { siteKey, secretKey },
+            { headers: headers },
         ).then((response) => {
             return ApiService.handleResponse(response);
         });

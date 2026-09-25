@@ -26,13 +26,13 @@ class ApiCredentialsController extends AbstractController
      */
     public function validateApiCredentials(Request $request): JsonResponse
     {
-        $secretKey = $request->query->get('secretKey');
+        $secretKey = $request->request->get('secretKey');
 
         if (!\is_string($secretKey)) {
             throw new InvalidRequestParameterException('secretKey');
         }
 
-        $siteKey = $request->query->get('siteKey');
+        $siteKey = $request->request->get('siteKey');
 
         if (!\is_string($siteKey)) {
             throw new InvalidRequestParameterException('siteKey');
